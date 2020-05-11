@@ -4,6 +4,7 @@ type Server struct {
 	Mysql   Mysql   `mapstructure:"mysql" json:"mysql" yaml:"mysql"`
 	Sqlite  Sqlite  `mapstructure:"sqlite" json:"sqlite" yaml:"sqlite"`
 	Qiniu   Qiniu   `mapstructure:"qiniu" json:"qiniu" yaml:"qiniu"`
+	Minio   Minio   `mapstructure:"minio" json:"minio" yaml:"minio"`
 	Casbin  Casbin  `mapstructure:"casbin" json:"casbin" yaml:"casbin"`
 	Redis   Redis   `mapstructure:"redis" json:"redis" yaml:"redis"`
 	System  System  `mapstructure:"system" json:"system" yaml:"system"`
@@ -43,11 +44,23 @@ type Redis struct {
 	Password string `mapstructure:"password" json:"password" yaml:"password"`
 	DB       int    `mapstructure:"db" json:"db" yaml:"db"`
 }
+
 type Qiniu struct {
 	AccessKey string `mapstructure:"access-key" json:"accessKey" yaml:"access-key"`
 	SecretKey string `mapstructure:"secret-key" json:"secretKey" yaml:"secret-key"`
 	Bucket string `mapstructure:"bucket" json:"bucket" yaml:"bucket"`
 	ImgPath string `mapstructure:"img-path" json:"imgPath" yaml:"img-path"`
+}
+
+type Minio struct {
+	AccessKey string `mapstructure:"access-key" json:"accessKey" yaml:"access-key"`
+	SecretKey string `mapstructure:"secret-key" json:"secretKey" yaml:"secret-key"`
+	Bucket string `mapstructure:"bucket" json:"bucket" yaml:"bucket"`
+	ImgPath string `mapstructure:"img-path" json:"imgPath" yaml:"img-path"`
+	EndPoint string `mapstructure:"end-point" json:"endPoint" yaml:"end-point"`
+	BucketName string `mapstructure:"bucket-name" json:"bucketName" yaml:"bucket-name"`
+	Location string	`mapstructure:"location" json:"location" yaml:"location"`
+	SSL bool `mapstructure:"ssl" json:"ssl" yaml:"ssl"`
 }
 
 type Captcha struct {

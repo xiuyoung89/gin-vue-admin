@@ -13,7 +13,7 @@ mysql:
     username: root
     password: 'root'
     path: '127.0.0.1:3306'
-    db-name: 'wallet-admin'
+    db-name: 'wallet_admin'
     config: 'charset=utf8&parseTime=True&loc=Local'
     max-idle-conns: 10
     max-open-conns: 10
@@ -34,9 +34,13 @@ qiniu:
 
 # oss configuration
 Minio:
-    access-key: 'minioadmin'
-    secret-key: 'minioadmin'
-    bucket: 'wallet-admin'
+    access-key: 'xiafanwen.com'
+    secret-key: 'zhangxiangsb.'
+    bucket: 'gin-vue-admin'
+    img-path: 'http://xiafanwen.com:9000/gin-vue-admin/'
+    end-point: "http://xiafanwen.com:9000"
+    bucket-name: "gin-vue-admin"
+    location: "us-east-1"
 
 # redis configuration
 redis:
