@@ -46,7 +46,7 @@ func MinioUpload(file *multipart.FileHeader) (err error, path string, key string
 
 	dataLen := file.Size
 	fileKey := fmt.Sprintf("%d%s", time.Now().Unix(), file.Filename) // 文件名格式 自己可以改 建议保证唯一性
-	n, err := minioClient.PutObject(bucketName, fileKey, f, dataLen, minio.PutObjectOptions{ContentType:"application/octet-stream"})
+	n, err := minioClient.PutObject(bucketName, fileKey, f, dataLen, minio.PutObjectOptions{ContentType:"image/png"})
 	if err != nil {
 		fmt.Println(err)
 		return

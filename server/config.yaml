@@ -38,7 +38,7 @@ Minio:
     secret-key: 'zhangxiangsb.'
     bucket: 'gin-vue-admin'
     img-path: 'http://xiafanwen.com:9000/gin-vue-admin/'
-    end-point: "http://xiafanwen.com:9000"
+    end-point: "xiafanwen.com:9000"
     bucket-name: "gin-vue-admin"
     location: "us-east-1"
 
