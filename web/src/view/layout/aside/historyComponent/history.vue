@@ -19,8 +19,8 @@
     <!--自定义右键菜单html代码-->
     <ul :style="{left:left+'px',top:top+'px'}" class="contextmenu" v-show="contextMenuVisible">
       <li @click="closeAll">关闭所有</li>
-      <li @click="closeLeft">关闭左边</li>
-      <li @click="closeRight">关闭右边</li>
+      <li @click="closeLeft">关闭左侧</li>
+      <li @click="closeRight">关闭右侧</li>
       <li @click="closeOther">关闭其他</li>
     </ul>
   </div>
@@ -36,15 +36,15 @@ export default {
       left: 0,
       top: 0,
       isCollapse: false,
-      isMobile:false,
+      isMobile: false,
       rightActive: ''
     }
   },
   created() {
-    this.$bus.on('mobile',(isMobile)=>{
+    this.$bus.on('mobile', isMobile => {
       this.isMobile = isMobile
     })
-    this.$bus.on('collapse',(isCollapse)=>{
+    this.$bus.on('collapse', isCollapse => {
       this.isCollapse = isCollapse
     })
     const initHistorys = [
@@ -60,7 +60,7 @@ export default {
     this.setTab(this.$route)
   },
 
-  beforeDestroy(){
+  beforeDestroy() {
     this.$bus.off('collapse')
     this.$bus.off('mobile')
   },
@@ -77,7 +77,7 @@ export default {
         } else {
           width = 220
         }
-        if(this.isMobile){
+        if (this.isMobile) {
           width = 0
         }
         this.left = e.clientX - width
@@ -118,7 +118,7 @@ export default {
       const activeIndex = this.historys.findIndex(
         item => item.name == this.activeValue
       )
-      this.historys.splice(leftIndex, this.historys.length)
+      this.historys.splice(leftIndex + 1, this.historys.length)
       if (leftIndex < activeIndex) {
         this.$router.push({ name: this.rightActive })
       }
@@ -202,4 +202,10 @@ export default {
   background: #f2f2f2;
   cursor: pointer;
 }
+.router-history {
+  background: #fff;
+  padding: 0 6px;
+  border-top: 1px solid #dcdcdc;
+}
+
 </style>

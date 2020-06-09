@@ -23,13 +23,13 @@ func CreateTemp(c *gin.Context) {
 	var a model.AutoCodeStruct
 	_ = c.ShouldBindJSON(&a)
 	AutoCodeVerify := utils.Rules{
-		"Abbreviation":      {utils.NotEmpty()},
-		"StructName":      {utils.NotEmpty()},
-		"PackageName":      {utils.NotEmpty()},
-		"Fields":      {utils.NotEmpty()},
+		"Abbreviation": {utils.NotEmpty()},
+		"StructName":   {utils.NotEmpty()},
+		"PackageName":  {utils.NotEmpty()},
+		"Fields":       {utils.NotEmpty()},
 	}
 	WKVerifyErr := utils.Verify(a, AutoCodeVerify)
-	if WKVerifyErr!=nil {
+	if WKVerifyErr != nil {
 		response.FailWithMessage(WKVerifyErr.Error(), c)
 		return
 	}
@@ -37,31 +37,31 @@ func CreateTemp(c *gin.Context) {
 		apiList := [5]model.SysApi{
 			{
 				Path:        "/" + a.Abbreviation + "/" + "create" + a.StructName,
-				Description: "新增" + a.StructName,
+				Description: "新增" + a.Description,
 				ApiGroup:    a.Abbreviation,
 				Method:      "POST",
 			},
 			{
 				Path:        "/" + a.Abbreviation + "/" + "delete" + a.StructName,
-				Description: "删除" + a.StructName,
+				Description: "删除" + a.Description,
 				ApiGroup:    a.Abbreviation,
 				Method:      "DELETE",
 			},
 			{
 				Path:        "/" + a.Abbreviation + "/" + "update" + a.StructName,
-				Description: "更新" + a.StructName,
+				Description: "更新" + a.Description,
 				ApiGroup:    a.Abbreviation,
 				Method:      "PUT",
 			},
 			{
 				Path:        "/" + a.Abbreviation + "/" + "find" + a.StructName,
-				Description: "根据ID获取" + a.StructName,
+				Description: "根据ID获取" + a.Description,
 				ApiGroup:    a.Abbreviation,
 				Method:      "GET",
 			},
 			{
 				Path:        "/" + a.Abbreviation + "/" + "get" + a.StructName + "List",
-				Description: "获取" + a.StructName + "列表",
+				Description: "获取" + a.Description + "列表",
 				ApiGroup:    a.Abbreviation,
 				Method:      "GET",
 			},
@@ -80,7 +80,7 @@ func CreateTemp(c *gin.Context) {
 		response.FailWithMessage(fmt.Sprintf("创建失败，%v", err), c)
 		os.Remove("./ginvueadmin.zip")
 	} else {
-		c.Writer.Header().Add("Content-Disposition", fmt.Sprintf("attachment; filename=%s", "ginvueadmin.zip")) //fmt.Sprintf("attachment; filename=%s", filename)对下载的文件重命名
+		c.Writer.Header().Add("Content-Disposition", fmt.Sprintf("attachment; filename=%s", "ginvueadmin.zip")) // fmt.Sprintf("attachment; filename=%s", filename)对下载的文件重命名
 		c.Writer.Header().Add("Content-Type", "application/json")
 		c.Writer.Header().Add("success", "true")
 		c.File("./ginvueadmin.zip")

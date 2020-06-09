@@ -2,8 +2,6 @@
   <div>
     <el-form
       :inline="true"
-      :model="form"
-      :rules="rules"
       label-width="85px"
       ref="menuForm"
       label-position="top"
@@ -14,7 +12,7 @@
           :class="'el-icon-'+ meta.icon"
           style="position: absolute; z-index: 9999; padding: 5px 10px; "
         ></i>
-        <el-select clearable filterable class="gva-select" v-model="meta.icon" placeholder="请选择" @change="propIcon(value)">
+        <el-select clearable filterable class="gva-select" v-model="meta.icon" placeholder="请选择">
           <el-option v-for="item in options" :key="item.key" :label="item.key" :value="item.key">
             <span class="icon" :class="item.label"></span>
             <span style="float: left">{{ item.key }}</span>
